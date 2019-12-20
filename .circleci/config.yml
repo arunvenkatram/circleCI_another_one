@@ -13,7 +13,7 @@ jobs:
           path: /tmp/artifacts/hawkeye_report.json
   build:
     docker:
-      - image: docker:stable
+      - image: google/cloud-sdk
     steps:
       - checkout
       - setup_remote_docker
