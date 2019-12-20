@@ -1,18 +1,18 @@
 version: 2
 jobs:
   security-checks:
-    working_directory: ./
+    working_directory: ~/repo
     docker:
       - image: docker:stable
     steps:
       - checkout
       - setup_remote_docker
       - run:
-          command: sh ci/security-checks.sh
+          command: sh ci/security-checks.sh && pwd
       - store_artifacts:
           path: /tmp/artifacts/hawkeye_report.json
   build:
-    working_directory: ./
+    working_directory: ~/repo
     docker:
       - image: docker:stable
     steps:
