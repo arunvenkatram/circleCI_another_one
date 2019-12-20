@@ -30,9 +30,5 @@ workflows:
   build-test:
     jobs:
       - security-checks
-      - build:
-          requires:
-            - security-checks
-      - push:
-          requires:
-            - build
+      - build
+      - push
