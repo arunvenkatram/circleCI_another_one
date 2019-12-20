@@ -15,6 +15,7 @@ jobs:
     docker:
       - image: docker:stable
     steps:
+      - checkout
       - run:
           command: pwd && docker build -t gcr.io/newproject-259011/myapp:${CIRCLE_BUILD_NUM} .
   push:
