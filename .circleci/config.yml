@@ -21,7 +21,7 @@ jobs:
           command: pwd && docker build -t gcr.io/newproject-259011/myapp:${CIRCLE_BUILD_NUM} .
       - run:
           command: echo $GCLOUD_SERVICE_KEY_GCR | base64 --decode --ignore-garbage > ${HOME}/gcloud-service-key.json && gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json && docker push gcr.io/newproject-259011/myapp:${CIRCLE_BUILD_NUM}
- workflows:
+workflows:
   version: 2
   build-push:
     jobs:
