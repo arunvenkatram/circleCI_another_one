@@ -27,12 +27,13 @@ jobs:
 
 workflows:
   version: 2
-  build-test:
+  build-container-and-push-to-gcr:
     jobs:
       - security-checks
-      - build
-          requires: 
+      - build:
+         - requires:
             - security-checks
-      - push
-          requires:
+      - push:
+         - requires:
             - build
+
