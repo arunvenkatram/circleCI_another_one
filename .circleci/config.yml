@@ -1,7 +1,7 @@
 version: 2
 jobs:
   security-checks:
-    working_directory: ~/repo
+    working_directory: ./
     docker:
       - image: docker:stable
     steps:
@@ -12,6 +12,7 @@ jobs:
       - store_artifacts:
           path: /tmp/artifacts/hawkeye_report.json
   build:
+    working_directory: ./
     docker:
       - image: docker:stable
     steps:
@@ -22,7 +23,7 @@ jobs:
       - image: google/cloud-sdk
     steps:
       - run:
-          command: gcloud auth activate-service-account --key-file=${GCLOUD_SERVICE_KEY} && docker push gcr.io/newproject-259011/myapp:${CIRCLE_BUILD_NUM}
+          command: echo $GCLOUD_SERVICE_KEY_GCR | base64 --decode --ignore-garbage > ${HOME}/gcloud-service-key.json && gcloud auth activate-service-account --key-file=${HOME}/gcloud-service-key.json && docker push gcr.io/newproject-259011/myapp:${CIRCLE_BUILD_NUM}
 
 workflows:
   version: 2
