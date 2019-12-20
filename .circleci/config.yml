@@ -16,13 +16,13 @@ jobs:
       - image: docker:stable
     steps:
       - run:
-          command: docker build -t gcr.io/newproject-259011/myapp:${CIRCLE_BUILD_NUM}
+          command: docker build -t gcr.io/newproject-259011/myapp:${CIRCLE_BUILD_NUM} .
   push:
     docker:
       - image: google/cloud-sdk
     steps:
       - run:
-          command: gcloud auth activate-service-account --key-file=${GCLOUD_SERVICE_KEY}
+          command: gcloud auth activate-service-account --key-file=${GCLOUD_SERVICE_KEY} && docker push gcr.io/newproject-259011/myapp:${CIRCLE_BUILD_NUM}
 
 workflows:
   version: 2
