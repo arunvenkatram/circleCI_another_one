@@ -1,7 +1,7 @@
 version: 2
 jobs:
   security-checks:
-    working_directory: ~/repo
+    working_directory: ~/project
     docker:
       - image: docker:stable
     steps:
@@ -12,7 +12,6 @@ jobs:
       - store_artifacts:
           path: /tmp/artifacts/hawkeye_report.json
   build:
-    working_directory: ~/repo
     docker:
       - image: docker:stable
     steps:
