@@ -16,7 +16,7 @@ jobs:
       - image: docker:stable
     steps:
       - run:
-          command: docker build -t gcr.io/newproject-259011/myapp:${CIRCLE_BUILD_NUM} .
+          command: pwd && docker build -t gcr.io/newproject-259011/myapp:${CIRCLE_BUILD_NUM} .
   push:
     docker:
       - image: google/cloud-sdk
